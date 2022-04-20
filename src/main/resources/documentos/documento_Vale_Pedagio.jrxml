@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Vale_Pedagio" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6d83f2d4-8802-484a-91e4-32280005bb02">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="idmdfe" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[select vale.cnpjforn, coalesce(vale.cnpjpg,vale.cpfpg) as pg, ncompra
+from
+     vale_pedagio as vale
+where
+   idmdfe = $P{idmdfe}]]>
+	</queryString>
+	<field name="cnpjforn" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cnpjforn"/>
+	</field>
+	<field name="pg" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pg"/>
+	</field>
+	<field name="ncompra" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ncompra"/>
+	</field>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="ElementGroupHeight" x="112" y="1" width="108" height="20" uuid="00fe3ebe-277a-4d4d-b1c6-7da103775271"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cnpjforn}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="ElementGroupHeight" x="0" y="1" width="100" height="20" uuid="5dcae578-f5af-4deb-9f18-d8525461de71"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="ElementGroupHeight" x="229" y="1" width="120" height="20" uuid="c50d6877-8ada-4995-b34b-60a13d07561a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ncompra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

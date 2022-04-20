@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Veiculo_Tracao" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7c620bc4-352e-4619-accb-a7aef3fddb1e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="idmdfe" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[select 
+ v.placa,
+ p.rntrc
+from 
+ veiculo_reboque vr 
+join veiculo v 
+ on (v.idveiculo = vr.idveiculo)
+join proprietario p
+ on( v.idproprietario = p.idproprietario)
+where
+  vr.idmdfe = $P{idmdfe}]]>
+	</queryString>
+	<field name="placa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="placa"/>
+	</field>
+	<field name="rntrc" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="rntrc"/>
+	</field>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="150" height="20" uuid="231c02d2-f715-4076-86a0-ceeb4c61feae"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="157" y="0" width="120" height="20" uuid="aacff92e-3775-4e20-ac89-cbb3c660866f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rntrc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

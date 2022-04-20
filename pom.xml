@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.19.BUILD-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>br.com.conexao.mdfe-api</groupId>
+    <artifactId>mdfe-api</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>Conexão MDF-e</name>
+    <description>Conexão MDF-e</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <commons-lang3.version>3.7</commons-lang3.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+        <!--Dependencias Iniciais Início-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--Dependencias Iniciais Fim-->
+
+        <!--Banco de dados-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--Migrações Banco de dados-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
+        <!--Java 8 Hibernate-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+        </dependency>
+
+        <!--Suporte Jackson para datas do Java 8-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <!--Tratamento de mensagem nas excessões-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+
+        <!-- Protocol, requerido no CNX-FINCATTO -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+        <!--Segurança / Spring Security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!--Segurança / OAuth2-->
+        <dependency>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <version>2.1.1.RELEASE</version>
+        </dependency>
+
+        <!--Segurança / JWT-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+        </dependency>
+
+        <!--Segurança / Claims JWT-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+
+        <!--Logs da aplicação-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!--Processor dos arquivos de configurações-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.conexaomdfe.fincatto</groupId>
+            <artifactId>nfe</artifactId>
+            <version>3.0.6-SNAPSHOT</version>
+        </dependency>
+
+        <!--Log4j - Logs do sistema-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--JASPER REPORT-->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+        <!--Código de Barras dos documentos-->
+        <dependency>
+            <groupId>net.sourceforge.barbecue</groupId>
+            <artifactId>barbecue</artifactId>
+            <version>1.5-beta1</version>
+        </dependency>
+
+        <!--Imprimir documentos em PDF-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-support</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.5</version>
+        </dependency>
+
+        <!--Fim dependências JasperReport-->
+
+        <!--Envio de Email-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- Gerar os Metamodels no Build
+            Para o IntelliJ marcar a pasta /target/generated-sources/annotations como generated sources root.
+        -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+        </dependency>
+
+        <!--Converter XML em JSON-->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20171018</version>
+        </dependency>
+
+        <!-- Commons adicionado, já que alguns JDK's não tem. -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!--envio de email pelo amazon ses-->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-ses</artifactId>
+            <version>1.11.233</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <version>1.1.7.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
+        <!-- Código de barras QRCODE no DAMDFE-->
+        <dependency>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-bridge</artifactId>
+            <version>1.11</version>
+        </dependency>
+
+        <!-- FIM Código de barras QRCODE no DAMDFE-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+
+        <repository>
+            <id>myMavenRepo.read</id>
+            <url>https://mymavenrepo.com/repo/Hw18c4sgJmEqvdoKK8de/</url>
+        </repository>
+        
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+</project>

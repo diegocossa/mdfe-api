@@ -1,0 +1,44 @@
+variables:
+  DOCKER_DRIVER: overlay2
+stages:
+    - build
+    - docker
+    - deploy
+build:projeto:
+    except:
+        - dev
+    stage: build
+    image: maven:3-jdk-8
+    tags: ["API","MDFE","DOCKER"]
+    script:
+      - mvn clean install -DskipTests
+      - ls target/
+    artifacts:
+        when: on_success
+        paths:
+          - target/*.jar
+        expire_in: 2 days
+build:docker:
+    stage: docker
+    image: openjdk:8u191-jdk-alpine
+    services:
+        - docker:dind
+    dependencies:
+        - build:projeto
+    tags: ["API","MDFE","SHELL"]
+    except:
+        - dev
+    script:        
+        - sudo docker login registry.gitlab.com/driveconexao/mdfe-api -u driveconexao -p patriaamadabrasil
+        - sudo docker build -t apimdfe:release --build-arg JAR_FILE=/target/mdfe-api-1.0.0.jar .
+deploy:
+    stage: deploy
+    tags: ["API","MDFE","SHELL"]
+    except:
+        - dev
+    script:      
+        - bash start.sh
+    dependencies:
+        - build:docker
+    when: manual
+

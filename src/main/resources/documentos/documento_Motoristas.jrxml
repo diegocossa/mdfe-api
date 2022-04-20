@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Motoristas" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="01375ed4-7e82-4c16-89e9-b9122c8afa82">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="idmdfe" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[select 
+    m.cpf,
+    m.nome
+from
+     condutor c 
+     join motorista m 
+	on(c.idmotorista = m.idmotorista)
+where
+  idmdfe = $P{idmdfe}]]>
+	</queryString>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	</field>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="97" y="0" width="130" height="20" uuid="ba189623-4800-4911-9bd5-592a03a19973"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="91" height="20" uuid="91a6145e-1cbd-4cc2-93e6-efb9b7697458"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

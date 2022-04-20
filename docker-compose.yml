@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  datacondominio:
+    container_name: apimdfe
+    hostname: apimdfe
+    image: apimdfe:release
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8443:8443"
+    volumes:
+      - /etc/letsencrypt/live/3gbrasil.com.br/keystore.p12:/etc/letsencrypt/live/3gbrasil.com.br/keystore.p12
+      - /etc/cacerts/homologacao.cacerts:/etc/cacerts/homologacao.cacerts
+      - /etc/cacerts/producao.cacerts:/etc/cacerts/producao.cacerts
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+    driver: bridge
